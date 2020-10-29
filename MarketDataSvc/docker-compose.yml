@@ -12,7 +12,7 @@ services:
       - 2003:2003
     volumes:
       - "$PWD/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
-      - "$PWD/data:/var/lib/influxdb"
+      - "$PWD/influxdbdata:/var/lib/influxdb"
     environment:
       INFLUXDB_REPORTING_DISABLED: "false"
       INFLUXDB_DATA_QUERY_LOG_ENABLED: "true"
@@ -22,4 +22,6 @@ services:
     image: grafana/grafana
     ports: 
       - 3002:3000
+    volumes:
+      - "$PWD/grafanadata:/var/lib/grafana"
     
