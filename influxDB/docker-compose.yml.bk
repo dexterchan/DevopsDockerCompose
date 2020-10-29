@@ -1,0 +1,46 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  influxdb:
+    container_name: influxdb
+    image: influxdb:alpine
+    command: -config /etc/influxdb/influxdb.conf
+    restart: always
+    ports:
+      - 8086:8086
+      - 2003:2003
+    volumes:
+      - "$PWD/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+      - "$PWD/data:/var/lib/influxdb"
+    environment:
+      INFLUXDB_REPORTING_DISABLED: "false"
+      INFLUXDB_DATA_QUERY_LOG_ENABLED: "true"
+      INFLUXDB_GRAPHITE_ENABLED: "true"
+    networks:
+      - backend
+  telegraf:
+    container_name: telegraf
+    image: telegraf:alpine
+    restart: always
+    networks:
+        - "container:influxdb"
+    volumes:
+      - "$PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro"
+      - "/proc:/host/proc:ro"
+    environment:
+      HOST_PROC: /host/proc
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+        - subnet: 2001:3984:3989::/64
+          gateway: 2001:3984:3989::1
+      

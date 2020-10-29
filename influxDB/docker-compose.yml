@@ -3,6 +3,7 @@ version: "3.1"
 
 services:
   influxdb:
+    container_name: influxdb
     image: influxdb:alpine
     command: -config /etc/influxdb/influxdb.conf
     restart: always
@@ -16,3 +17,9 @@ services:
       INFLUXDB_REPORTING_DISABLED: "false"
       INFLUXDB_DATA_QUERY_LOG_ENABLED: "true"
       INFLUXDB_GRAPHITE_ENABLED: "true"
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports: 
+      - 3002:3000
+    

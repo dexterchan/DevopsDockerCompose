@@ -26,11 +26,41 @@ docker-compose up -d
 ## testing
 ```
 lsof -i:8086
-curl -G http://localhost:8086/query --data-urlencode "q=SHOW DATABASES"
+curl -u admin:admin123 -G http://localhost:8086/query --data-urlencode "q=SHOW DATABASES"
+```
+
+##  telegraf
+```
+docker run --rm  telegraf:alpine telegraf config > telegraf.conf
+
+Modify telegraf.conf
+## HTTP Basic Auth
+username = "admin"
+password = "admin123"
+```
+### TELEGRAF RUN
+```
+docker run -d --name=telegraf \
+      --net=container:influxdb \
+      -e HOST_PROC=/host/proc \
+      -v /proc:/host/proc:ro \
+      -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro \
+      telegraf:alpine
+# verify the run
+docker exec -it influxdb bash
+influx -username admin -password admin123
+
+> use telegraf
+Using database telegraf
+> SELECT * FROM cpu WHERE time > now() - 1m
 ```
 
 # Reference
-[Reference 1](https://thenewstack.io/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/)
-[Reference 2](https://thenewstack.io/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-2)
+[Reference 1](https://thenewstack.io/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-1/)<br>
+[Reference 2](https://thenewstack.io/how-to-setup-influxdb-telegraf-and-grafana-on-docker-part-2)<br>
 
-[Reference 3](https://github.com/DataDog/java-dogstatsd-client)
+[Reference 3](https://github.com/DataDog/java-dogstatsd-client)<br>
+
+[Grafana Telegraf Dashboard](https://grafana.com/grafana/dashboards/1443)<br>
+[Grafana Jmeter Dashboard](https://grafana.com/grafana/dashboards/5496)<br>
+[Grafana JVM Metric](https://grafana.com/grafana/dashboards/9600)
