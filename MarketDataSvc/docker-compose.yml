@@ -17,6 +17,8 @@ services:
       INFLUXDB_REPORTING_DISABLED: "false"
       INFLUXDB_DATA_QUERY_LOG_ENABLED: "true"
       INFLUXDB_GRAPHITE_ENABLED: "true"
+    networks:
+      - backend
   grafana:
     container_name: grafana
     image: grafana/grafana
@@ -24,4 +26,16 @@ services:
       - 3002:3000
     volumes:
       - "$PWD/grafanadata:/var/lib/grafana"
-    
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+        - subnet: 2001:3984:3989::/64
+          gateway: 2001:3984:3989::1    
