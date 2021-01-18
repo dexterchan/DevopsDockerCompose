@@ -1,0 +1,11 @@
+pydantic
+ipykernel
+ipython
+jupyter
+numpy
+scipy
+black
+pylint
+mypy
+pytest
+boto3

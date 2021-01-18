@@ -1,0 +1,25 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  jupyter:
+    container_name: jupyter
+    image: bbgjupyter:v0.centos
+    ports: 
+      - 8888:8888
+    volumes:
+      - "~/.jupyter:/opt/app/.jupyter"
+      - "~/sandbox/Python/Jupyter:/opt/app"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.240.0/24
+          gateway: 172.16.240.1
+        - subnet: 2001:3984:3990::/64
+          gateway: 2001:3984:3990::1    
