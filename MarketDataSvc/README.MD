@@ -13,7 +13,7 @@ docker run --rm -e INFLUXDB_HTTP_AUTH_ENABLED=true \
          -v $PWD/scripts:/docker-entrypoint-initdb.d \
          influxdb:alpine /init-influxdb.sh
 #Verify
-cat $PWD/data/meta/meta.db | grep one_week
+cat $PWD/influxdbdata/meta/meta.db | grep one_week
 expected:
 Binary file (standard input) matches
 ```
