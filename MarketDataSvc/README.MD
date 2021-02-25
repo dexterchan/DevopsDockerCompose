@@ -9,7 +9,7 @@ docker run --rm influxdb:alpine influxd config > influxdb.conf
 docker run --rm -e INFLUXDB_HTTP_AUTH_ENABLED=true \
          -e INFLUXDB_ADMIN_USER=admin \
          -e INFLUXDB_ADMIN_PASSWORD=admin123 \
-         -v $PWD/data:/var/lib/influxdb \
+         -v $PWD/influxdbdata:/var/lib/influxdb \
          -v $PWD/scripts:/docker-entrypoint-initdb.d \
          influxdb:alpine /init-influxdb.sh
 #Verify
