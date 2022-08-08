@@ -6,7 +6,7 @@ services:
     container_name: jupyter
     image: bbgjupyter:v0.centos
     ports: 
-      - 8888:8888
+      - 7000:8888
     volumes:
       - "~/.jupyter:/opt/app/.jupyter"
       - "~/sandbox/Python/Jupyter:/opt/app"
