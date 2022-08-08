@@ -23,6 +23,18 @@ spec:
       containers:
       - image: postgres:alpine3.16
         name: postgres
+        ports:
+          - containerPort: 5432
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 15
+          periodSeconds: 30
         resources:
           requests:
             cpu: "100m"
