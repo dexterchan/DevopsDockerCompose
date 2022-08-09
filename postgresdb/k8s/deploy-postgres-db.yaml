@@ -35,6 +35,11 @@ spec:
             port: 5432
           initialDelaySeconds: 15
           periodSeconds: 30
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+            - SYS_ADMIN
         resources:
           requests:
             cpu: "100m"
