@@ -47,6 +47,15 @@ spec:
             value: "boar"
           - name: POSTGRES_PASSWORD
             value: "postgres"
+          - name: PGDATA
+            value: "/postgres_data"
+        # volumeMounts:
+        #   - mountPath: "/postgres_data"
+        #     name: "postgres-local-data"
+      # volumes:
+      #   - name: postgres-local-data
+      #     hostPath:
+      #       path: "/postgres_data"
 ---
 apiVersion: v1
 kind: Service
