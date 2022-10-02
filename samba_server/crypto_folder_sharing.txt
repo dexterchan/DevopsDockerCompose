@@ -1,0 +1,6 @@
+[public]
+comment = Crypto Data
+path = /var/task/data
+force user = thermoelectric
+force group = users
+read only = No
