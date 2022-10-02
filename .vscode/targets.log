@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue Aug  9 21:48:58 2022
+# Make data base, printed on Sun Oct  2 12:40:07 2022
 
 # Variables
 
@@ -50,17 +50,17 @@ LDFLAGS = -L/usr/local/opt/llvm/libi -L/usr/local/opt/openssl@1.1/lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /var/folders/3y/gss7w57d4j72h3hnn4jjnpzw0000gp/T//ssh-lziEu7isH6xw/agent.1947
+SSH_AUTH_SOCK = /var/folders/3y/gss7w57d4j72h3hnn4jjnpzw0000gp/T//ssh-6MZSuNhhCOfP/agent.1937
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.jIj3MqNPtG/org.macosforge.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.TysYKqYlmj/org.macosforge.xquartz:0
 # environment
 CONDA_EXE = /usr/local/Caskroom/miniconda/base/bin/conda
 # environment
 PWD = /Users/dexter/sandbox/DockerTrain/DevopsDockerCompose
 # environment
-SSH_AGENT_PID = 1948
+SSH_AGENT_PID = 1938
 # environment
 PKG_CONFIG_PATH = /usr/local/opt/openssl@1.1/lib/pkgconfig
 # environment
@@ -74,7 +74,7 @@ DRILL_HOME = /Users/dexter/tools/apache-drill-1.17.0/
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/dexter/Library/Application Support/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
+VSCODE_CODE_CACHE_PATH = /Users/dexter/Library/Application Support/Code/CachedData/74b1f979648cc44d385a2286793c226e611f59e7
 # environment
 LOGNAME = dexter
 # environment
@@ -96,7 +96,7 @@ SHLVL = 1
 # environment
 KAFKA_HOME = /Users/dexter/tools/kafka_2.13-2.8.0
 # environment
-JAVA_HOME = /usr/local/Cellar/openjdk@11/11.0.15/libexec/openjdk.jdk/Contents/Home
+JAVA_HOME = /usr/local/Cellar/openjdk@11/11.0.16.1/libexec/openjdk.jdk/Contents/Home
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -116,7 +116,7 @@ TMPDIR = /var/folders/3y/gss7w57d4j72h3hnn4jjnpzw0000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/dexter/Library/Application Support/Code/1.70.0-main.sock
+VSCODE_IPC_HOOK = /Users/dexter/Library/Application Support/Code/1.71.2-main.sock
 # environment
 MallocNanoZone = 0
 # environment
@@ -128,7 +128,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.90515261.90515267
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.107951505.107951511
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -158,7 +158,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1930
+VSCODE_PID = 1917
 # environment
 _CE_CONDA = 
 # variable set hash-table stats:
@@ -170,7 +170,7 @@ _CE_CONDA =
 
 # Directories
 
-# . (device 16777221, inode 16155815): 12 files, no impossibilities.
+# . (device 16777225, inode 16155815): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -244,7 +244,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Aug  9 21:48:58 2022
+# Finished Make data base on Sun Oct  2 12:40:07 2022
 
  
 make: *** No rule to make target `all'.  Stop.
