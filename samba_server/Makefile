@@ -1,3 +1,3 @@
 
 build_image:
-	docker build --tag samba-server:ubuntu-focal -f Dockerfile .
+	docker build --tag registry.example.com/samba-server:ubuntu-focal -f Dockerfile .

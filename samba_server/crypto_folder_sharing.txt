@@ -1,4 +1,4 @@
-[public]
+[crypto]
 comment = Crypto Data
 path = /var/task/data
 force user = thermoelectric
