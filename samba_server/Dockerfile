@@ -10,7 +10,7 @@ RUN groupadd --system --gid=9999  ${APPUSER} && \
 
 COPY crypto_folder_sharing.txt /tmp
 RUN cat /tmp/crypto_folder_sharing.txt | tee -a /etc/samba/smb.conf
-# RUN smbpasswd -a ${APPUSER}
+RUN smbpasswd -a ${APPUSER} -n
 
-# CMD ["nmbd; smbd;"]
+CMD ["nmbd; smbd;"]
 #https://www.instructables.com/How-to-setup-Samba-file-server/
