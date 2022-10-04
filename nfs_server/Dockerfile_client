@@ -2,7 +2,7 @@ FROM ubuntu:focal-20220826
 ENV APPUSER=nfs_service
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install nfs-client -y
+    apt-get install nfs-client nfs-common -y
 ENV WKDIR /opt/nfs
 RUN mkdir -p $WKDIR
 RUN mkdir -p /srv/nfs4
