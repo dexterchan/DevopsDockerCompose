@@ -2,13 +2,15 @@ FROM ubuntu:focal-20220826
 ENV APPUSER=nfs_service
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install nfs-client nfs-common -y
+    apt-get install nfs-client nfs-common sudo -y
 ENV WKDIR /opt/nfs
 RUN mkdir -p $WKDIR
 RUN mkdir -p /srv/nfs4
+ENV HOMEDIR /home/${APPUSER}
+RUN mkdir -p ${HOMEDIR}
 
 RUN groupadd --system --gid=9999   ${APPUSER} 
-RUN useradd --system --uid=9999 --gid=${APPUSER} ${APPUSER}
+RUN useradd --system --home-dir $HOMEDIR --uid=9999 --gid=${APPUSER} ${APPUSER}
 RUN echo "${APPUSER} ALL=(ALL) NOPASSWD:ALL" |  tee -a /etc/sudoers
 
 
