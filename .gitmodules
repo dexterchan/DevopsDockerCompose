@@ -1,3 +1,0 @@
-[submodule "nfs_server"]
-	path = nfs_server
-	url = git@github.com:dexterchan/docker-nfs-server.git
