@@ -11,11 +11,11 @@ git clone https://github.com/OpenVPN/easy-rsa.git
 pushd easy-rsa/easyrsa3
 ./easyrsa init-pki
 ./easyrsa --batch build-ca nopass
-./easyrsa build-server-full ${root_domain} nopass
+./easyrsa --batch build-server-full ${root_domain} nopass
 
 
 cp pki/ca.crt ${CURPATH}/cert/ca.crt
-cp pki/private/ca.key ${CURPATH}/cert/ca.key
+cp pki/issued/${root_domain}.crt ${CURPATH}/cert/${root_domain}.crt
 cp pki/private/${root_domain}.key ${CURPATH}/cert/${root_domain}.key
 
 
