@@ -1,0 +1,41 @@
+## traefik.yml
+# https://doc.traefik.io/traefik/routing/entrypoints/
+# https://www.middlewareinventory.com/blog/traefik-docker/
+
+## Static configuration
+entryPoints:
+  web:
+    address: ":80"
+    # forwardedHeaders:
+    #   insecure: true
+
+  websecure:
+    address: ":443"
+    # forwardedHeaders:
+    #   insecure: true
+
+
+## Dynamic configuration
+http:
+  routers:
+    grafana:
+      rule: "Host(`grafana.example.com`)"
+      service: svc-grafana
+  services:
+    # Define how to reach an existing service on our infrastructure
+    svc-grafana:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://grafana.example.com/"
+
+
+
+# Docker configuration backend
+# providers:
+#   docker:
+#     defaultRule: "Host(`{{ trimPrefix `/` .Name }}.dev.local`)"
+
+# API and dashboard configuration
+api:
+  insecure: true

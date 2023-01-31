@@ -1,0 +1,16 @@
+version: "3"
+
+
+
+services:
+  nginx:
+    image: traefik:latest
+    container_name: traefik-proxy
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./traefik.yml:/etc/traefik/traefik.yml
+    extra_hosts:
+      grafana.example.com: "192.168.50.155"
