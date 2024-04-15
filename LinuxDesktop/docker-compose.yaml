@@ -2,6 +2,7 @@
 ---
 services:
   rdesktop:
+    platform: linux/amd64
     image: linuxserver/rdesktop:ubuntu-kde-version-a34093e0
     container_name: rdesktop
     # security_opt:
