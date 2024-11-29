@@ -1,0 +1,9 @@
+services:
+  hello:
+    build: .
+    volumes:
+      - .:/workarea:ro
+    command:
+      - python3.9
+      - message.py
+    tty: true
