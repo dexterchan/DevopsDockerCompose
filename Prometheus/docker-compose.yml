@@ -7,3 +7,15 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus-data:/prometheus
     tty: true
+    networks:
+      - prometheus-example
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    ports:
+      - 9100:9100
+    restart: unless-stopped
+    networks:
+      - prometheus-example
+networks:
+  prometheus-example:
