@@ -26,5 +26,18 @@ services:
       - ./grafana-data:/var/lib/grafana
     networks:
       - prometheus-example
+  shoehub:
+    image: shoehubv2:latest
+    container_name: shoehub
+    ports:
+      - 9000:8080
+    networks:
+      - prometheus-example
+  bastion:
+    image: ubuntu
+    container_name: bastion
+    networks:
+      - prometheus-example
+    command: ["sleep", "infinity"]
 networks:
   prometheus-example:
