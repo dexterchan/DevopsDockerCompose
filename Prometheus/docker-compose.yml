@@ -18,12 +18,17 @@ services:
     networks:
       - prometheus-example
   grafana:
-    image: grafana/grafana-oss
+    image: boar/grafana-oss
     container_name: grafana
+    user: grafana
     ports:
       - 3000:3000
     volumes:
       - ./grafana-data:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana-tmp:/tmp/grafana
+      - ./grafana-tmp/slack.certs.cer:/usr/local/share/ca-certificates/slack_ca.crt
+    command: ["/run.sh"]
     networks:
       - prometheus-example
   shoehub:
