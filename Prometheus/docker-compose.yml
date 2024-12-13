@@ -17,6 +17,23 @@ services:
     restart: unless-stopped
     networks:
       - prometheus-example
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - prometheus-example
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    volumes:
+      - log_gen_volume:/var/log
+      - ./promtail.config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - prometheus-example
+
   grafana:
     image: boar/grafana-oss
     container_name: grafana
@@ -27,7 +44,7 @@ services:
       - ./grafana-data:/var/lib/grafana
       - ./grafana.ini:/etc/grafana/grafana.ini
       - ./grafana-tmp:/tmp/grafana
-      - ./grafana-tmp/slack.certs.cer:/usr/local/share/ca-certificates/slack_ca.crt
+      #- ./grafana-tmp/slack.certs.cer:/usr/local/share/ca-certificates/slack_ca.crt
     command: ["/run.sh"]
     networks:
       - prometheus-example
@@ -38,6 +55,13 @@ services:
       - 9000:8080
     networks:
       - prometheus-example
+  log_gen:
+    image: log_gen
+    build: 
+      context: ./loki-demo
+      dockerfile: Dockerfile
+    volumes:
+      - log_gen_volume:/var/log
   bastion:
     image: ubuntu
     container_name: bastion
@@ -46,3 +70,5 @@ services:
     command: ["sleep", "infinity"]
 networks:
   prometheus-example:
+volumes:
+  log_gen_volume:

@@ -2,3 +2,4 @@ prometheus-data/
 node-exporter-data/
 grafana-data/
 grafana-tmp/
+*.log
