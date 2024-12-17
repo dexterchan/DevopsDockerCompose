@@ -1,12 +1,16 @@
 services:
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     ports:
       - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus-data:/prometheus
     tty: true
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-remote-write-receiver
     networks:
       - prometheus-example
   node-exporter:
@@ -48,11 +52,40 @@ services:
     command: ["/run.sh"]
     networks:
       - prometheus-example
+  alloy:
+    image: grafana/alloy:latest
+    container_name: alloy
+    ports:
+        - 12345:12345
+        - 4317:4317
+        - 4318:4318
+    volumes:
+      - ./grafana-alloy.config.alloy:/etc/alloy/config.alloy
+      - ./grafana-alloy-data:/var/lib/alloy/data
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - /etc/alloy/config.alloy
+    networks:
+      - prometheus-example
   shoehub:
     image: shoehubv2:latest
     container_name: shoehub
     ports:
       - 9000:8080
+    networks:
+      - prometheus-example
+  orderservice:
+    container_name: orderservice
+    image: orderservice-basic-dotnet
+    ports:
+      - 8090:8080
+    networks:
+      - prometheus-example
+  paymentservice:
+    container_name: paymentservice
+    image: paymentservice-dotnet
     networks:
       - prometheus-example
   log_gen:
@@ -62,6 +95,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - log_gen_volume:/var/log
+    networks:
+      - prometheus-example
   bastion:
     image: ubuntu
     container_name: bastion
