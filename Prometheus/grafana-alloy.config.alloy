@@ -3,20 +3,31 @@ logging {
   format = "logfmt"
 }
 
-otelcol.receiver.otlp "default" {
+otelcol.receiver.otlp "default_metric" {
   http {
     endpoint="0.0.0.0:4318"
   }
-  grpc {}
 
   output {
     metrics  = [otelcol.processor.batch.default.input]
   }
 }
 
+otelcol.receiver.otlp "default" {
+  http {
+    endpoint="0.0.0.0:4320"
+  }
+  grpc {}
+
+  output {
+    traces   = [otelcol.processor.batch.default.input]
+  }
+}
+
 otelcol.processor.batch "default" {
   output {
     metrics  = [otelcol.exporter.prometheus.default.input]
+    traces   = [otelcol.exporter.otlphttp.tempo.input]
   }
 }
 
@@ -27,5 +38,15 @@ otelcol.exporter.prometheus "default" {
 prometheus.remote_write "default" {
     endpoint{
         url = "http://prometheus:9090/api/v1/write"
+    }
+}
+
+otelcol.exporter.otlphttp "tempo" {
+    client {
+        endpoint = "http://tempo:4318"
+        tls {
+            insecure             = true
+            insecure_skip_verify = true
+        }
     }
 }

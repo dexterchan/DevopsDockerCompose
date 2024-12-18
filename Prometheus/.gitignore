@@ -3,4 +3,5 @@ node-exporter-data/
 grafana-data/
 grafana-alloy-data/
 grafana-tmp/
+grafana-tempo-data/
 *.log
