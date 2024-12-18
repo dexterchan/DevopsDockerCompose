@@ -63,6 +63,18 @@ metrics_generator:
   traces_storage:
     path: /var/tempo/generator/traces
   processor:
+    service_graphs:
+      wait: 10s
+      max_items: 10000
+      workers: 10
+      dimensions: []
+      #enable_client_server_prefix: false
+      peer_attributes:
+        - peer.service
+        - db.name
+        - db.system
+    span_metrics:
+      enable_target_info: true
     local_blocks:
       filter_server_spans: false
       flush_to_storage: true
@@ -79,5 +91,5 @@ overrides:
   defaults:
     metrics_generator:
       processors: [service-graphs, span-metrics, local-blocks] # enables metrics generator
-      generate_native_histograms: both
+      #generate_native_histograms: both
       
