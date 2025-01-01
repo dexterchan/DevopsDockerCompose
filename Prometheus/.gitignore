@@ -5,3 +5,4 @@ grafana-alloy-data/
 grafana-tmp/
 grafana-tempo-data/
 *.log
+tmp.*/
