@@ -1,4 +1,6 @@
 
+# Testing
+https://github.com/aussiearef/grafana-udemy
 
 # Slack access
 WE need to customize grafana image to include CA bundle from Slack.com before enabling Slack access. <br>
