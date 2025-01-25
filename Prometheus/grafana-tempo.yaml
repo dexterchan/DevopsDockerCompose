@@ -11,7 +11,7 @@ cache:
   - roles:
     - frontend-search  
     memcached: 
-      host: memcached:11211
+      host: memcached
 
 query_frontend:
   search:
@@ -38,9 +38,11 @@ distributor:
         thrift_compact:
     zipkin:
     otlp:
-      protocols:
-        http:
-        grpc:
+        protocols:
+          http:
+            endpoint: "0.0.0.0:4318"
+          grpc:
+            endpoint: "0.0.0.0:4317"
     opencensus:
 
 ingester:
